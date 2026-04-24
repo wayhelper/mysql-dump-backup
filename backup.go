@@ -75,7 +75,7 @@ func cleanOldBackups(backupRoot string, clear int) {
 	}
 
 	now := time.Now()
-	thirtyDaysAgo := now.AddDate(0, 0, -clear)
+	clearDays := now.AddDate(0, 0, -clear)
 
 	for _, file := range files {
 		fullPath := filepath.Join(backupRoot, file.Name())
@@ -84,8 +84,8 @@ func cleanOldBackups(backupRoot string, clear int) {
 			continue
 		}
 
-		// 如果文件的修改时间早于 30 天前，则删除
-		if info.ModTime().Before(thirtyDaysAgo) {
+		// 如果文件的修改时间早于 clear 天前，则删除
+		if info.ModTime().Before(clearDays) {
 			err := os.RemoveAll(fullPath) // 使用 RemoveAll 可以递归删除文件夹
 			if err != nil {
 				fmt.Printf("删除过期备份失败 [%s]: %v\n", fullPath, err)

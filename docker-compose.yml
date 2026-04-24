@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  mysql_backup:
+    image: mysql_backup:v3
+    container_name: mysql_backup
+    command: ./backup
+    volumes:
+      - D:\Wayne\github_code\mysql-dump-backup\config.yml:/app/config.yml
+      - D:\Wayne\github_code\mysql-dump-backup\backups:/app/backups
+    environment:
+      - TZ=Asia/Shanghai
+      - CONFIG_PATH=/app/config.yml
+    restart: unless-stopped

@@ -52,6 +52,7 @@ databases:
   - name: "database1"
   - name: "database2"
   - name: "database3"
+  - name: "--all-databases" # 备份整个数据库
 
 # Local path where backups will be stored
 backup_path: "./backups"

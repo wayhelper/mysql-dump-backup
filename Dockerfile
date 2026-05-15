@@ -4,8 +4,6 @@ WORKDIR /app
 
 RUN apk add --no-cache git build-base
 
-RUN apk --no-cache add ca-certificates mariadb-client tzdata
-
 ENV GO111MODULE=on \
     GOPROXY=https://goproxy.cn,direct \
     GOTOOLCHAIN=auto
@@ -21,6 +19,8 @@ FROM alpine:latest
 WORKDIR /app
 
 RUN apk --no-cache add ca-certificates
+
+RUN apk --no-cache add ca-certificates mariadb-client tzdata
 
 COPY --from=builder /app/mysql-dump-backup .
 

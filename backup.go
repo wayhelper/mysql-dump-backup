@@ -46,7 +46,7 @@ func backupDatabase(cfg *Config, dbName string, targetPath string) {
 		dbName,
 	}
 
-	cmd := exec.Command("mysqldump", args...)
+	cmd := exec.Command("mariadb-dump", args...)
 
 	outFile, err := os.Create(filePath)
 	if err != nil {

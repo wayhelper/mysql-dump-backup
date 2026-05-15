@@ -18,7 +18,7 @@ FROM alpine:latest
 
 WORKDIR /app
 
-RUN apk --no-cache add ca-certificates mariadb-dump tzdata
+RUN apk --no-cache add mariadb-client ca-certificates tzdata
 
 COPY --from=builder /app/mysql-dump-backup .
 
